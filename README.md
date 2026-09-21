@@ -13,3 +13,10 @@
 cd C:\Users\admin\Documents\GitHub\portfolio
 agy
 ```
+
+## 課堂練習進度檢核
+- [x] 階段一：筆電安裝 agy 與帳號登入
+- [x] 階段二：建立作品集 Repo 與設定 AGENTS.md 課堂公約
+- [x] 階段三：終端機基本功與看懂改檔差異（Diff）
+- [ ] 階段四：讓 AI 出錯實驗（親眼看它一本正經地錯）
+- [ ] 階段五：分組討論「想你的生物」養殖箱五個問題
