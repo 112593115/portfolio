@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>聚苯盾甲獸課堂發表簡報</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+    @page {
+      size: 1920px 1080px;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      background-color: #0b131e;
+      color: #e2e8f0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      padding: 70px 90px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+      page-break-inside: avoid;
+      background: radial-gradient(circle at 85% 15%, #1e293b 0%, #0b131e 70%);
+      border: 1px solid #1e293b;
+      overflow: hidden;
+    }
+
+    /* Ambient background graphic */
+    .slide::after {
+      content: "";
+      position: absolute;
+      top: -150px;
+      right: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+      padding-bottom: 16px;
+      margin-bottom: 30px;
+    }
+
+    .header .category {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #38bdf8;
+      text-transform: uppercase;
+    }
+
+    .header .id-tag {
+      font-size: 18px;
+      color: #94a3b8;
+      background: rgba(30, 41, 59, 0.8);
+      padding: 4px 16px;
+      border-radius: 20px;
+      border: 1px solid #334155;
+    }
+
+    /* Title */
+    .slide-title {
+      font-size: 46px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slide-title .icon {
+      font-size: 42px;
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      display: flex;
+      gap: 40px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 20px;
+      padding: 36px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .card.primary-card {
+      border-left: 6px solid #38bdf8;
+    }
+
+    .card.accent-card {
+      border-left: 6px solid #f59e0b;
+    }
+
+    .card.danger-card {
+      border-left: 6px solid #ef4444;
+    }
+
+    .card-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p, .card li {
+      font-size: 24px;
+      line-height: 1.65;
+      color: #cbd5e1;
+      margin-bottom: 14px;
+    }
+
+    .card ul {
+      padding-left: 30px;
+    }
+
+    .card strong {
+      color: #f8fafc;
+    }
+
+    .highlight-text {
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    .accent-text {
+      color: #fbbf24;
+      font-weight: 700;
+    }
+
+    .quote-box {
+      background: rgba(30, 41, 59, 0.6);
+      border-left: 4px solid #38bdf8;
+      padding: 24px 30px;
+      border-radius: 0 16px 16px 0;
+      font-size: 26px;
+      font-style: italic;
+      color: #93c5fd;
+      margin-bottom: 24px;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+      padding-top: 20px;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #64748b;
+    }
+
+    /* Cover Slide Specifics */
+    .cover-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+      padding: 40px 20px;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: rgba(14, 165, 233, 0.15);
+      color: #38bdf8;
+      border: 1px solid #0284c7;
+      padding: 8px 24px;
+      border-radius: 30px;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-size: 72px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff 40%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cover-subtitle {
+      font-size: 32px;
+      color: #94a3b8;
+      margin-bottom: 48px;
+      font-weight: 500;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 30px;
+    }
+
+    .meta-item {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid #334155;
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-size: 20px;
+    }
+
+    .meta-item span {
+      color: #38bdf8;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1: 封面 -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">「想你的生物」養殖箱生態設定發表</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="cover-container">
+      <div class="cover-badge">POST-HUMAN ECOSYSTEM ARCHIVE</div>
+      <div class="cover-title">聚苯盾甲獸<br><span style="font-size: 48px; font-weight: 600; color: #7dd3fc; -webkit-text-fill-color: #7dd3fc;">(*Plastiscutum taipeiense*)</span></div>
+      <div class="cover-subtitle">人類消失後 50 年 —— 台北盆地淹水都會沼澤之新演化物種</div>
+      <div class="cover-meta">
+        <div class="meta-item"><span>俗稱</span> 捷運幽靈蟹 / 塑盾沼蟹 / 合成金屬背甲蟹</div>
+        <div class="meta-item"><span>發表形式</span> 課堂作品集成果匯報</div>
+        <div class="meta-item"><span>生態檔案編號</span> BIO-2026-050-TPE</div>
+      </div>
+    </div>
+    <div class="footer">
+      <div>Portfolio Presentation | Virtual Creature Spec</div>
+      <div>Page 01 / 10</div>
+    </div>
+  </div>
+
+  <!-- Slide 2: 設計概念與世界觀起源 -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">概念背景・CONCEPT & WORLDVIEW</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="slide-title"><span class="icon">💡</span> 核心命題與演化世界觀</div>
+    <div class="content-area">
+      <div class="card primary-card">
+        <div class="card-title">🌊 演化哲學命題</div>
+        <div class="quote-box">「如果生命不再抗拒塑膠浩劫，而是將人類遺留的石化垃圾與重金屬，轉化為賴以生存的資本？」</div>
+        <p>在過去的生態想像中，人造廢棄物往往被視為生命的終結者。然而「聚苯盾甲獸」的誕生，探索了生命在文明廢墟中以極致的生化演化，重新奪回生存主控權的可能。</p>
+      </div>
+      <div class="card accent-card">
+        <div class="card-title">🏙️ 塑膠紀元（Plasticene）的台北</div>
+        <ul>
+          <li><strong>人類文明退場</strong>：人類驟然消失後第 50 年，人造設施無人維護。</li>
+          <li><strong>地貌徹底巨變</strong>：抽水防洪系統癱瘓，盆地徹底成為水鄉沼澤。</li>
+          <li><strong>人造地層形成</strong>：耐候百年的聚合物（PET、PE）與地下重金屬，成為新生態系的「無機礦藏」。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <div>聚苯盾甲獸 (*Plastiscutum taipeiense*)</div>
+      <div>Page 02 / 10</div>
+    </div>
+  </div>
+
+  <!-- Slide 3: 核心問題 1 - 年代與環境背景 -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">核心問題 1・ERA & ENVIRONMENT</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="slide-title"><span class="icon">🏛️</span> 年代背景與微氣候環境</div>
+    <div class="content-area">
+      <div class="card primary-card">
+        <div class="card-title">🗺️ 時空與地理地貌</div>
+        <ul>
+          <li><strong>時空坐標</strong>：人類消失後 50 年，亞熱帶台灣台北盆地。</li>
+          <li><strong>水文水道</strong>：基隆河與淡水河全面倒灌，忠孝東路等幹道成為 <span class="highlight-text">深達 4～8 公尺的混濁半鹹水水道</span>。</li>
+          <li><strong>人造礁岩</strong>：摩天大樓基座被水生榕樹氣根與藤蔓盤據，高低落差形成強烈斑駁光影。</li>
+        </ul>
+      </div>
+      <div class="card accent-card">
+        <div class="card-title">🧪 氣候與水體化學環境</div>
+        <ul>
+          <li><strong>溫度範圍</strong>：18°C ～ 39°C，夏季濕熱黏滯，冬季受強烈東北季風吹拂。</li>
+          <li><strong>漂浮水層</strong>：水體懸浮巨量未降解的寶特瓶、包裝薄膜與微塑膠纖維。</li>
+          <li><strong>底層淤泥</strong>：加油站地下油槽滲漏的重油、機油，以及高濃度的 <span class="accent-text">鉛、鎘、銅重金屬沉積</span>。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <div>聚苯盾甲獸 (*Plastiscutum taipeiense*)</div>
+      <div>Page 03 / 10</div>
+    </div>
+  </div>
+
+  <!-- Slide 4: 核心問題 2 - 生存與能量代謝機制 -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">核心問題 2・ENERGY & METABOLISM</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="slide-title"><span class="icon">⚡</span> 生存與能量代謝機制</div>
+    <div class="content-area">
+      <div class="card primary-card">
+        <div class="card-title">🧬 PETase 腸道共生菌群（吃塑膠）</div>
+        <ul>
+          <li><strong>生化借鑒</strong>：源自自然界「大阪堺菌（<em>Ideonella sakaiensis</em>）」的水解途徑。</li>
+          <li><strong>物理啃食</strong>：發育出特化的高硬度角質大顎，啃食長期浸泡紫外脆化的 PET 寶特瓶與 PE 塑膠袋。</li>
+          <li><strong>生化產能</strong>：中腸腺共生菌將合成高分子水解為對苯二甲酸與乙二醇，進入三羧酸循環製造 <span class="highlight-text">ATP 生命能量</span>。</li>
+        </ul>
+      </div>
+      <div class="card accent-card">
+        <div class="card-title">🛡️ 重金屬外殼固化（生物礦化）</div>
+        <ul>
+          <li><strong>重金屬隔離</strong>：主動吸收水中游離的鉛、銅等毒性離子，不進入血液循環循環系統。</li>
+          <li><strong>幾丁質結晶化</strong>：將重金屬離子轉移並富集在幾丁質外骨骼表面沉澱結晶。</li>
+          <li><strong>一石二鳥效應</strong>：既徹底解除了重金屬的體內毒性，又賦予了背甲如金屬鋼板般的防禦機械強度！</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <div>聚苯盾甲獸 (*Plastiscutum taipeiense*)</div>
+      <div>Page 04 / 10</div>
+    </div>
+  </div>
+
+  <!-- Slide 5: 核心問題 3 - 棲息空間選擇 -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">核心問題 3・SHELTER & HABITAT</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="slide-title"><span class="icon">🏰</span> 棲息微空間與立體避難邏輯</div>
+    <div class="content-area">
+      <div class="card primary-card">
+        <div class="card-title">🚇 倒吊棲息於淹水捷運月台天花板</div>
+        <p>牠們特化出強壯的反向抓握螯足，長年<strong>倒吊於淹水捷運站月台頂棚</strong>、廢棄大樓通風管道及水下電纜支架間。</p>
+        <p>此微棲所巧妙避開了自然水域常見的平面爭奪，充分利用人造都市遺址的立體天花板空間。</p>
+      </div>
+      <div class="card accent-card">
+        <div class="card-title">⚖️ 「上下夾擊」下的避險戰略</div>
+        <ul>
+          <li><strong>向下避開【水底缺氧黑泥】</strong>：<br>避開水底完全缺氧且沉積高濃度硫化氫與強腐蝕有機重油的致命淤泥。</li>
+          <li><strong>向上避開【水面頂級掠食者】</strong>：<br>避開水面巡邏狩獵的野化大型猛禽（如野化海雕、大冠鷲）與野化兇猛水獺。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <div>聚苯盾甲獸 (*Plastiscutum taipeiense*)</div>
+      <div>Page 05 / 10</div>
+    </div>
+  </div>
+
+  <!-- Slide 6: 核心問題 3 延伸 - 社會結構與擬態防禦 -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">核心問題 3 延伸・SOCIAL DEFENSE</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="slide-title"><span class="icon">🛡️</span> 群居防禦陣：擬態鏽蝕鐵皮招牌</div>
+    <div class="content-area">
+      <div class="card primary-card">
+        <div class="card-title">🧩 足部互扣卡榫（Huddling Array）</div>
+        <ul>
+          <li><strong>日常習性</strong>：平時個體之間保持安全間距，各自安靜倒吊啃食電纜塑膠皮與漂流垃圾。</li>
+          <li><strong>感知警報</strong>：透過側線水流感受器察覺到大型獵食者的水壓擾動時，整群迅速收縮聚攏。</li>
+          <li><strong>邊緣扣鎖</strong>：各甲殼邊緣與足部具有吻合凹槽，能像拼圖般在天花板嚴絲合縫地鎖定成單一平面。</li>
+        </ul>
+      </div>
+      <div class="card accent-card">
+        <div class="card-title">🎭 完美融入人造廢墟的工業擬態</div>
+        <ul>
+          <li><strong>視覺擬態</strong>：由於外殼富集鉛與銅結晶，群聚陣列遠看完全就是一塊<strong>老舊生鏽的「鐵皮招牌」或「鍍鋅鋼板」</strong>。</li>
+          <li><strong>機械無懈可擊</strong>：天敵的獠牙或爪喙根本無法在平面上找到咬合施力點，亦無法將其從水泥頂板掀開。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <div>聚苯盾甲獸 (*Plastiscutum taipeiense*)</div>
+      <div>Page 06 / 10</div>
+    </div>
+  </div>
+
+  <!-- Slide 7: 核心問題 4 - 繁殖與繁衍策略 -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">核心問題 4・REPRODUCTION STRATEGY</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="slide-title"><span class="icon">🥚</span> 繁殖策略：極致 $K$-策略（少生精育）</div>
+    <div class="content-area">
+      <div class="card primary-card">
+        <div class="card-title">💎 親代高額投資（高護卵成本）</div>
+        <ul>
+          <li><strong>極端低產量</strong>：雌蟹每 2 年僅產出 <span class="highlight-text">3 ～ 4 枚</span> 長達 6 公分的巨型卵。</li>
+          <li><strong>改性樹脂封裝</strong>：母體分泌由改性聚乙烯醇（PVA-like）形成的堅硬耐腐蝕膠囊，將卵完全密封在腹甲育兒腔內隨身保護。</li>
+          <li><strong>防範化學毒害</strong>：高密封性使胚胎免受外在半鹹水中重油與游離重金屬離子的致畸侵害。</li>
+        </ul>
+      </div>
+      <div class="card accent-card">
+        <div class="card-title">🍼 世代垂直菌株繼承（關鍵傳承機制）</div>
+        <ul>
+          <li><strong>背甲育嬰期</strong>：剛孵化的幼蟹甲殼柔軟無礦化保護，寄宿在母蟹背甲長達 3 個月。</li>
+          <li><strong>反芻微塑膠濃糜</strong>：幼蟹專食母體反芻出的微塑膠消化半糜。</li>
+          <li><strong>益生菌傳遞</strong>：幼蟹在攝食過程中直接承接母體中腸腺的 <span class="accent-text">PETase 分解共生菌</span>，完成生存技能的世代交接。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <div>聚苯盾甲獸 (*Plastiscutum taipeiense*)</div>
+      <div>Page 07 / 10</div>
+    </div>
+  </div>
+
+  <!-- Slide 8: 核心問題 5 - 天敵、威脅與演化局限 -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">核心問題 5・THREATS & VULNERABILITIES</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="slide-title"><span class="icon">⚠️</span> 天敵威脅與演化局限</div>
+    <div class="content-area">
+      <div class="card danger-card">
+        <div class="card-title">🔥 致命生存威脅</div>
+        <ul>
+          <li><strong>盛夏極端水體缺氧</strong>：盛夏水溫達 39°C，水底有機污泥厭氧發酵產生劇毒硫化氫，水中溶氧歸零；此時牠們必須沿建築立柱爬出水面，使用特化「鰓室微孔」行空氣呼吸。</li>
+          <li><strong>高空帷幕玻璃崩塌</strong>：廢棄大樓玻璃幕牆受地震或老化破裂墜落，高空墜石是極少數能正面擊碎金屬盾陣的毀滅天災。</li>
+        </ul>
+      </div>
+      <div class="card primary-card">
+        <div class="card-title">🌿 生態系定位與基石價值</div>
+        <ul>
+          <li><strong>高分子聚合物轉化者</strong>：首度在食物網中打通「無機人造石化廢物」至「有機生命能量」的轉換通道。</li>
+          <li><strong>生態微工程師</strong>：外殼剝落的重金屬沉澱層與排泄物，正在孕育下游全新耐酸耐重金屬的微生菌群。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <div>聚苯盾甲獸 (*Plastiscutum taipeiense*)</div>
+      <div>Page 08 / 10</div>
+    </div>
+  </div>
+
+  <!-- Slide 9: 結語與啟發性討論 -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">總結反思・CONCLUSION & DISCUSSION</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="slide-title"><span class="icon">💬</span> 結語與課堂延伸思考</div>
+    <div class="content-area">
+      <div class="card primary-card">
+        <div class="card-title">✨ 創作核心思想</div>
+        <div class="quote-box">「生命不在於抹除人造物浩劫的傷痕，而在於學習在廢墟中重新紮根與演化。」</div>
+        <p>聚苯盾甲獸體現了推演生物學中，生命面對人類環境干擾時所展現出的強韌適應力與共生智慧。</p>
+      </div>
+      <div class="card accent-card">
+        <div class="card-title">❓ 留給課堂的開放提問</div>
+        <ul>
+          <li><strong>思考題 1（資源枯竭）</strong>：<br>若 200 年後台北沼澤中的易消化 PET 寶特瓶被完全吃光，聚苯盾甲獸會滅絕，還是演化出分解尼龍與鐵氟龍的新共生菌？</li>
+          <li><strong>思考題 2（食物鏈升級）</strong>：<br>以聚苯盾甲獸為食的掠食者（如野化猛禽），體內會累積更高濃度的微塑膠與重金屬嗎？</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <div>聚苯盾甲獸 (*Plastiscutum taipeiense*)</div>
+      <div>Page 09 / 10</div>
+    </div>
+  </div>
+
+  <!-- Slide 10: 感謝聆聽與 Q&A -->
+  <div class="slide">
+    <div class="header">
+      <div class="category">發表完畢・THANK YOU</div>
+      <div class="id-tag">BIO-2026-050-TPE</div>
+    </div>
+    <div class="cover-container" style="align-items: center; text-align: center; width: 100%;">
+      <div class="cover-badge" style="margin-bottom: 30px;">Q & A SESSION</div>
+      <div class="cover-title" style="font-size: 64px; margin-bottom: 24px;">感謝聆聽與指教</div>
+      <div class="cover-subtitle" style="font-size: 28px; margin-bottom: 40px;">歡迎針對「聚苯盾甲獸」的生態設定提出問題與回饋！</div>
+      <div class="cover-meta" style="justify-content: center;">
+        <div class="meta-item"><span>專案目錄</span> <code>creatures/plastiscutum_taipeiense.md</code></div>
+        <div class="meta-item"><span>協作工具</span> Antigravity Agent (agy)</div>
+        <div class="meta-item"><span>匯出格式</span> Presentation PDF (16:9)</div>
+      </div>
+    </div>
+    <div class="footer">
+      <div>聚苯盾甲獸 (*Plastiscutum taipeiense*)</div>
+      <div>Page 10 / 10</div>
+    </div>
+  </div>
+
+</body>
+</html>

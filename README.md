@@ -6,6 +6,8 @@
 - `AGENTS.md`：AI 協作課堂公約與專案指引
 - `creatures/`：虛擬生物養殖箱專案（「想你的生物」發想與設定）
   - [聚苯盾甲獸 (*Plastiscutum taipeiense*)](creatures/plastiscutum_taipeiense.md) —— 人類消失後 50 年台北淹水沼澤生物
+  - [聚苯盾甲獸課堂發表投影片 (Markdown)](creatures/plastiscutum_taipeiense_slides.md) —— 依養殖箱五大核心問題設計之 Markdown 簡報
+  - [聚苯盾甲獸課堂發表簡報 (HTML 網頁版)](creatures/plastiscutum_taipeiense_presentation.html) —— 可直接以瀏覽器全螢幕播放之簡報原始檔
 - `projects/`：後續課堂程式與互動作品
 
 ## 開始使用
