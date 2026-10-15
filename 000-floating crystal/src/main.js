@@ -798,7 +798,7 @@ for (let i = 0; i < ironCount; i++) {
 }
 const ironGeo = new THREE.BufferGeometry();
 ironGeo.setAttribute('position', new THREE.BufferAttribute(ironPositions, 3));
-const ironMat = new THREE.PointsMaterial({ color: 0x9ca6ad, size: 1.3, transparent: true, opacity: 0.6, metalness: 0.8, depthWrite: false });
+const ironMat = new THREE.PointsMaterial({ color: 0x9ca6ad, size: 1.3, transparent: true, opacity: 0.6, depthWrite: false });
 const ironStorm = new THREE.Points(ironGeo, ironMat);
 scene.add(ironStorm);
 
